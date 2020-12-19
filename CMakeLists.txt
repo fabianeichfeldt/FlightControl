@@ -3,8 +3,8 @@ set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/cmake/ArduinoToolchain.cmake)
 set(CMAKE_CXX_STANDARD 98)
 set(PROJECT_NAME FlightControl)
 
-set(${PROJECT_NAME}_BOARD megaADK)
-# set(ARDUINO_CPU)
+set(${PROJECT_NAME}_BOARD mega)
+set(ARDUINO_CPU atmega2560)
 project(${PROJECT_NAME})
 
 # Define additional source and header files or default arduino sketch files
@@ -33,9 +33,9 @@ set(PROJ_HDR ${HDR_FILES})
 #set(_RECURSE true)
 
 #### Additional settings for programmer. From programmers.txt
-set(${PROJECT_NAME}_PROGRAMMER avrisp)
-# set(${PROJECT_NAME}_PORT /dev/cu.usbserial-00000000)
-# set(megaADK.upload.speed 9600)
+set(${PROJECT_NAME}_PROGRAMMER arduinoisporg)
+set(${PROJECT_NAME}_PORT COM3)
+set(mega.upload.speed 115200)
 
 ## Verbose build process
 # set(${PROJECT_NAME}_AFLAGS -v)
