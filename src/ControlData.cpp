@@ -3,7 +3,7 @@
 
 ControlData ControlData::GetDefault() {
   return ControlData();
-}void SetSpeed();
+}
 
 int ControlData::GetSpeed() {
   return speed;
@@ -18,9 +18,9 @@ ControlData::ControlData(): rotation(0, 0, 0) {
 }
 
 void ControlData::SetSpeed(int speed) {
-  speed = speed;
+  this->speed = speed;
 }
 
 void ControlData::SetRotation(Rotation rotation) {
-  rotation = rotation;
+  this->rotation = rotation;
 }

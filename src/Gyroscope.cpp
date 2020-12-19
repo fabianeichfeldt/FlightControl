@@ -5,8 +5,8 @@
 
 Gyroscope::Gyroscope(TwoWire wire, int address): rotation(0, 0, 0)
 {
-    wire = wire;
-    address = address;
+    this->wire = wire;
+    this->address = address;
     gyroScale = 1.0/131; //movement in grad per second
     accScale = 1.0/16383; // LSB/g
 

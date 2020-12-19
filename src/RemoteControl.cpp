@@ -67,13 +67,13 @@ void RemoteControl::ReadData()
       if((buffer[i] == 0xf0) && (buffer[i+1] == 0xf0) && (buffer[i+2] == 0xf0))
       {
         firstRelevantByte = i+3;
-        int motorSpeed = (buffer[firstRelevantByte] << 16) | (buffer[firstRelevantByte+1] << 8) | (buffer[firstRelevantByte+2]);
-        int sollX = (buffer[firstRelevantByte+3] << 16) | (buffer[firstRelevantByte+4] << 8) | (buffer[firstRelevantByte+5]);
-        int sollY = (buffer[firstRelevantByte+6] << 16) | (buffer[firstRelevantByte+7] << 8) | (buffer[firstRelevantByte+8]);
-        int sollZ = (buffer[firstRelevantByte+9] << 16) | (buffer[firstRelevantByte+10] << 8) | (buffer[firstRelevantByte+11]);
+        int throttle = (buffer[firstRelevantByte] << 16) | (buffer[firstRelevantByte + 1] << 8) | (buffer[firstRelevantByte + 2]);
+        int x = (buffer[firstRelevantByte + 3] << 16) | (buffer[firstRelevantByte + 4] << 8) | (buffer[firstRelevantByte + 5]);
+        int y = (buffer[firstRelevantByte + 6] << 16) | (buffer[firstRelevantByte + 7] << 8) | (buffer[firstRelevantByte + 8]);
+        int z = (buffer[firstRelevantByte + 9] << 16) | (buffer[firstRelevantByte + 10] << 8) | (buffer[firstRelevantByte + 11]);
 
-        control.SetRotation(Rotation((sollX - 1500)/50, (sollY - 1500)/-50, 0));
-        control.SetSpeed(motorSpeed);
+        control.SetRotation(Rotation(CalculateAngle(x), CalculateAngle(y), CalculateAngle(z)));
+        control.SetSpeed(throttle);
 
         break;
       }
@@ -97,6 +97,11 @@ void RemoteControl::ReadData()
         }*/
     }
   }
+}
+
+float RemoteControl::CalculateAngle(int p)
+{
+  return (p - 1500.0)/500.0 * 90;
 }
 
 float RemoteControl::GetFloatFromSerial(byte* buffer)

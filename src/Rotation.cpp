@@ -2,9 +2,9 @@
 
 Rotation::Rotation(float angleX, float angleY, float angleZ)
 {
-    angleX = angleX; 
-    angleY = angleY;
-    angleZ = angleZ;
+    this->angleX = angleX;
+    this->angleY = angleY;
+    this->angleZ = angleZ;
 }
 
 float Rotation::GetX()

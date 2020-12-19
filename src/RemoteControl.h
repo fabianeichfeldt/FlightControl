@@ -10,6 +10,7 @@ private:
   ControlData control;
   float GetFloatFromSerial(byte* buffer);
   void ReadFromSerial();
+  float CalculateAngle(int p);
 
 public:
   RemoteControl();

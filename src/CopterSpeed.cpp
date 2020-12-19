@@ -2,10 +2,10 @@
 
 CopterSpeed::CopterSpeed(int frontLeft, int frontRight, int rearLeft, int rearRight)
 {
-    frontLeft = frontLeft;
-    frontRight = frontRight;
-    rearLeft = rearLeft;
-    rearRight = rearRight;
+    this->frontLeft = frontLeft;
+    this->frontRight = frontRight;
+    this->rearLeft = rearLeft;
+    this->rearRight = rearRight;
 }
 
 int CopterSpeed::GetFrontLeftSpeed()
