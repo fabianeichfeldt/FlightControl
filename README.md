@@ -1,0 +1,1 @@
+FlightContol is a hobby project to implement an arduino based software for controlling a quadcopter. 
