@@ -42,16 +42,16 @@ void Gyroscope::Init()
 
 void Gyroscope::SetGyroOffsets(int offsetGyroX, int offsetGyroY, int offsetGyroZ)
 {
-    offsetGyroX = offsetGyroX;
-    offsetGyroY = offsetGyroY;
-    offsetGyroZ = offsetGyroZ;
+    this->offsetGyroX = offsetGyroX;
+    this->offsetGyroY = offsetGyroY;
+    this->offsetGyroZ = offsetGyroZ;
 }
 
 void Gyroscope::SetAccOffsets(int offsetAccX, int offsetAccY, int offsetAccZ)
 {
-    offsetAccX = offsetAccX;
-    offsetAccY = offsetAccY;
-    offsetAccZ = offsetAccZ;
+    this->offsetAccX = offsetAccX;
+    this->offsetAccY = offsetAccY;
+    this->offsetAccZ = offsetAccZ;
 }
 
 Rotation Gyroscope::GetRotation()
@@ -66,8 +66,8 @@ Rotation Gyroscope::GetRotation()
   wire.endTransmission(false);
   wire.requestFrom(address,14,true);  // request a total of 14 registers
   
-  float AcX = ReadTwoBytes() * accScale;  // 0x3B (ACCEL_XOUT_H) & 0x3C (ACCEL_XOUT_L)
-  float AcY = ReadTwoBytes() * accScale;  // 0x3D (ACCEL_YOUT_H) & 0x3E (ACCEL_YOUT_L)
+  float AcX = (ReadTwoBytes() - offsetAccX) * accScale;  // 0x3B (ACCEL_XOUT_H) & 0x3C (ACCEL_XOUT_L)
+  float AcY = (ReadTwoBytes() - offsetAccY) * accScale;  // 0x3D (ACCEL_YOUT_H) & 0x3E (ACCEL_YOUT_L)
   float AcZ = ReadTwoBytes() * accScale;  // 0x3F (ACCEL_ZOUT_H) & 0x40 (ACCEL_ZOUT_L)
   
   wire.read()<<8|wire.read();  // 0x41 (TEMP_OUT_H) & 0x42 (TEMP_OUT_L)
