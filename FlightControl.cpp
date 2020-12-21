@@ -1,13 +1,13 @@
 #include <Wire.h>
 #include "src/CopterSpeed.h"
 #include "src/PIDController.h"
-#include "src/Gyroscope.h"
+#include "src/Gyroscope_new.h"
 #include "src/MotorControl.h"
 #include "src/RemoteControl.h"
 
-Gyroscope gyro(Wire, 0x68);
-PIDController controllerX(-6, 0, 0); // i = -0.5, d = -2.0
-PIDController controllerY(-6, 0, 0); // i = -0.5, d = -2.0
+Gyroscope_new gyro(Wire, 0x68);
+PIDController controllerX(-10, 0, -3); // i = -0.5, d = -2.0
+PIDController controllerY(-10, 0, -3); // i = -0.5, d = -2.0
 PIDController controllerZ(0, 0, 0);
 RemoteControl remote;
 
@@ -22,8 +22,7 @@ void setup() {
    PCICR |= 1;
    PCMSK0 |= 1;*/
 
-  gyro.SetAccOffsets(-437, 1662, 14351);
-  gyro.SetGyroOffsets(-312, 154, -326);
+  gyro.SetAccOffsets(4.735, 0.9075, 0);
   gyro.Init();
 
   remote.Init();
